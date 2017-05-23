@@ -1,0 +1,10 @@
+{
+  "extends": "eslint-config-topcoder/nodejs-babel",
+  "env": {
+    "jest": true
+  },
+  "rules": {
+    "import/no-commonjs": 0,
+    "lodash/prefer-lodash-typecheck": 0
+  }
+}
