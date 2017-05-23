@@ -2,13 +2,13 @@
 [![Build Status](https://travis-ci.org/lsentkiewicz/debug-it.svg?branch=master)](https://travis-ci.org/lsentkiewicz/action-creators)
 [![codecov](https://codecov.io/gh/lsentkiewicz/debug-it/branch/master/graph/badge.svg)](https://codecov.io/gh/lsentkiewicz/action-creators)
 
-Action creators utilities for Redux.
+Action creators utilities for Redux.  
 Features:
 - Parameter validation using [joi](https://www.npmjs.com/package/joi).
 - Debug created actions using [debug](https://www.npmjs.com/package/debug).
 - No need to define constants.
 - No duplicated namespaces.
-- No duplicated action names.
+- No duplicated action names.  
 Notes:
 - It doesn't work with [redux-thunk](https://www.npmjs.com/package/redux-thunk), but it's designed to work with [redux-logic](https://www.npmjs.com/package/redux-logic).
 
@@ -17,7 +17,7 @@ Notes:
 npm i --save action-creators joi joi-browser
 ```
 Add to webpack.config.js
-```json
+```js
 resolve: {
   alias: {
     joi: 'joi-browser'
@@ -118,27 +118,27 @@ You can also use `handleActions` from [redux-actions](http://npmjs.com/package/r
 
 ## Motivation
 - During development, action creators can be called with invalid or missing arguments, and it usually causes errors in the reducer function.  
-- When using `createAction` from `redux-actions`, it's not obvious if the action creator requires any arguments.
+- When using `createAction` from `redux-actions`, it's not obvious if the action creator requires any arguments.  
    For example:  
-   `increment = createAction('INCREMENT');`
+   `increment = createAction('INCREMENT');`  
    You don't know if you should call `increment()` or `increment(something)`. In such situation I always must check the expected payload in the reducer.
 - I needed a fast way to debug created actions. There are existing libraries for logging like [redux-logger](http://npmjs.com/package/redux-logger),
   but it can be not convenience for some users. You must expand 3 levels of object to see the action payload.
   It's much more readable if the action is logged in a single line.
 
 ## API
-- `createNamespace(namespace)`  
-  Parameters:
-    - `namespace: String` The namespace prefix for all action types. All namespaces must be unique otherwise an error will be thrown.  
-  Returns:
+- `createNamespace(namespace)`
+  - Parameters:  
+     - `namespace: String` The namespace prefix for all action types. All namespaces must be unique otherwise an error will be thrown.  
+   - Returns:  
     `{createAction: Function}` Return an object with a `createAction` property.
 - `createAction(type, argNames, schema)`  
-  Parameters:
-    - `type: String` The action type. All namespaces must be unique otherwise an error will be thrown.
-    - `argNames: Array` An array with arguments.
-    - `schema: Object` A Joi schema. Must be an object containing all props from the `argNames` array.  
-  Returns:
-    - `Function` The action creator
+  - Parameters:
+     - `type: String` The action type. All namespaces must be unique otherwise an error will be thrown.
+     - `argNames: Array` An array with arguments.
+     - `schema: Object` A Joi schema. Must be an object containing all props from the `argNames` array.  
+  - Returns:
+     - `Function` The action creator
 
 
 
