@@ -77,6 +77,7 @@ Console output:
 ac:USERS USERS_LOADED { keyword: 'john', items: [ { id: 1, name: 'john' } ], pageNumber: 1, pageSize: 10 } +0ms
 ```
 
+Error reporting
 ```js
 usersLoaded('john', -2, 1, 10)
 ```
@@ -126,16 +127,16 @@ You can also use `handleActions` from [redux-actions](http://npmjs.com/package/r
   It's much more readable if the action is logged in a single line.
 
 ## API
-- `createNamespace(namespace)`
+- `createNamespace(namespace)`  
   Parameters:
-    - `namespace: String` The namespace prefix for all action types. All namespaces must be unique otherwise an error will be thrown.
+    - `namespace: String` The namespace prefix for all action types. All namespaces must be unique otherwise an error will be thrown.  
   Returns:
     `{createAction: Function}` Return an object with a `createAction` property.
-- `createAction(type, argNames, schema)`
+- `createAction(type, argNames, schema)`  
   Parameters:
     - `type: String` The action type. All namespaces must be unique otherwise an error will be thrown.
     - `argNames: Array` An array with arguments.
-    - `schema: Object` A Joi schema. Must be an object containing all props from the `argNames` array.
+    - `schema: Object` A Joi schema. Must be an object containing all props from the `argNames` array.  
   Returns:
     - `Function` The action creator
 
