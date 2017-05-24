@@ -122,10 +122,10 @@ You can also use `handleActions` from [redux-actions](http://npmjs.com/package/r
 - When using `createAction` from `redux-actions`, it's not obvious if the action creator requires any arguments.  
    For example:  
    `increment = createAction('INCREMENT');`  
-   You don't know if you should call `increment()` or `increment(something)`. In such situation You always must check the expected payload in the reducer.
+   You don't know if you should call `increment()` or `increment(something)`. In such situation, you always must check the expected payload in the reducer.
 - I needed a fast way to debug created actions. There are existing libraries for logging like [redux-logger](http://npmjs.com/package/redux-logger),
-  but it can be sometimes not convenience. You must expand 3 levels of object to see the action payload.
-  It's much more readable if the action is logged in a single line.
+  but it can sometimes be not convenience. You must expand 3 levels of an object to see the action payload.
+  It's much more readable if the action payload is logged in a single line.
 
 ## API
 - `createNamespace(namespace)`
