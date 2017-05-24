@@ -1,6 +1,6 @@
 # action-creators
-[![Build Status](https://travis-ci.org/lsentkiewicz/debug-it.svg?branch=master)](https://travis-ci.org/lsentkiewicz/action-creators)
-[![codecov](https://codecov.io/gh/lsentkiewicz/debug-it/branch/master/graph/badge.svg)](https://codecov.io/gh/lsentkiewicz/action-creators)
+[![Build Status](https://travis-ci.org/lsentkiewicz/action-creators.svg?branch=master)](https://travis-ci.org/lsentkiewicz/action-creators)
+[![codecov](https://codecov.io/gh/lsentkiewicz/action-creators/branch/master/graph/badge.svg)](https://codecov.io/gh/lsentkiewicz/action-creators)
 
 Action creators utilities for Redux.  
 Features:
@@ -9,6 +9,7 @@ Features:
 - No need to define constants.
 - No duplicated namespaces.
 - No duplicated action names.  
+
 Notes:
 - It doesn't work with [redux-thunk](https://www.npmjs.com/package/redux-thunk), but it's designed to work with [redux-logic](https://www.npmjs.com/package/redux-logic).
 
@@ -121,9 +122,9 @@ You can also use `handleActions` from [redux-actions](http://npmjs.com/package/r
 - When using `createAction` from `redux-actions`, it's not obvious if the action creator requires any arguments.  
    For example:  
    `increment = createAction('INCREMENT');`  
-   You don't know if you should call `increment()` or `increment(something)`. In such situation I always must check the expected payload in the reducer.
+   You don't know if you should call `increment()` or `increment(something)`. In such situation You always must check the expected payload in the reducer.
 - I needed a fast way to debug created actions. There are existing libraries for logging like [redux-logger](http://npmjs.com/package/redux-logger),
-  but it can be not convenience for some users. You must expand 3 levels of object to see the action payload.
+  but it can be sometimes not convenience. You must expand 3 levels of object to see the action payload.
   It's much more readable if the action is logged in a single line.
 
 ## API
