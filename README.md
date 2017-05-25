@@ -133,11 +133,12 @@ You can also use `handleActions` from [redux-actions](http://npmjs.com/package/r
      - `namespace: String` The namespace prefix for all action types. All namespaces must be unique otherwise an error will be thrown.  
    - Returns:  
     `{createAction: Function}` Return an object with a `createAction` property.
-- `createAction(type, argNames, schema)`  
+- `createAction(type, argNames, schema, transform)`  
   - Parameters:
      - `type: String` The action type. All namespaces must be unique otherwise an error will be thrown.
      - `argNames: Array` An array with arguments.
      - `schema: Object` A Joi schema. Must be an object containing all props from the `argNames` array.  
+     - `transform: Function(Object)` An optional function to transform the created action. You can use it to change payload or metadata.
   - Returns:
      - `Function` The action creator
 

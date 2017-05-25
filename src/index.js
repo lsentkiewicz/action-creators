@@ -38,9 +38,10 @@ function createNamespace(namespace) {
    * @param {String} type the action type
    * @param {Array} argNames the arguments names
    * @param {Object} schema the joi schema
+   * @param {Function} transform the function to transform the created action
    * @returns {Function}
    */
-  function createAction(type, argNames, schema) {
+  function createAction(type, argNames, schema, transform) {
     const fullType = `${namespace}/${type}`;
     if (type == null) {
       throw new Error('type is required');
@@ -63,6 +64,9 @@ function createNamespace(namespace) {
     if (!_isObject(schema)) {
       throw new Error('schema must be an object');
     }
+    if (transform != null && typeof transform !== 'function') {
+      throw new Error('transform must be a function');
+    }
     usedTypes[fullType] = true;
 
     // eslint-disable-next-line require-jsdoc
@@ -73,10 +77,16 @@ function createNamespace(namespace) {
       });
       debug(type, payload);
       Joi.assert(payload, schema, `Validation failed for: "${fullType}"`);
-      return {
+      const action = {
         type: fullType,
         payload,
       };
+      if (transform) {
+        const transformed = transform(action);
+        debug(type, 'transformed', transformed);
+        return transformed;
+      }
+      return action;
     }
 
     actionCreator.toString = () => fullType;

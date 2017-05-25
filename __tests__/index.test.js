@@ -59,6 +59,11 @@ describe('createNamespace', () => {
       ns.createAction('a', [], {});
       expect(() => ns.createAction('a', [], {})).toThrow(`type "a" is already defined in namespace "${namespace}"`);
     });
+
+    test('should throw an error if transform is not a function', () => {
+      const ns = createNamespace(namespace);
+      expect(() => ns.createAction('a', [], {}, 123)).toThrow('transform must be a function');
+    });
   });
 
   describe('functional', () => {
@@ -80,12 +85,19 @@ describe('createNamespace', () => {
       });
     });
 
-
     test('toString() should return a type', () => {
       namespace = 'CHECK_TYPE';
       const ns = createNamespace(namespace);
       const action = ns.createAction('ACTION', [], {});
       expect(action.toString()).toBe('CHECK_TYPE/ACTION');
+    });
+
+    test('transform action', () => {
+      const transform = jest.fn(() => 'foo');
+      const ns = createNamespace(namespace);
+      const action = ns.createAction('ACTION', ['a', 'b'],
+        {a: Joi.number().required(), b: Joi.number().required()}, transform);
+      expect(action(1, 2)).toBe('foo');
     });
   });
 });

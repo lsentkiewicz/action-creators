@@ -5,6 +5,7 @@
   },
   "rules": {
     "import/no-commonjs": 0,
-    "lodash/prefer-lodash-typecheck": 0
+    "lodash/prefer-lodash-typecheck": 0,
+    "lodash/prefer-constant": 0
   }
 }
